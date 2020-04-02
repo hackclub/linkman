@@ -16,6 +16,11 @@ get '/' do
 
   # select the url specified in ref
   ref = ref.downcase
+
+  if ref[-1, 1] == '/'
+    ref = ref.delete_suffix('/')
+  end
+
   rec = Site.all.select {|r| ref == r['website']}.first
 
   # verify that the above actually corresponds to a record
