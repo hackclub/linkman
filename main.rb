@@ -15,6 +15,7 @@ get '/' do
   end
 
   # select the url specified in ref
+  ref = ref.downcase
   rec = Site.all.select {|r| ref == r['website']}.first
 
   # verify that the above actually corresponds to a record
