@@ -1,7 +1,7 @@
 require 'sinatra'
 require 'airrecord'
 require 'byebug'
-# require 'dotenv/load'
+require 'dotenv/load'
 
 # key, base, table
 Site = Airrecord.table(ENV['AIRTABLE_KEY'], ENV['AIRTABLE_BASE'], "sites")
