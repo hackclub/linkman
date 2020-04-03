@@ -1,7 +1,7 @@
 require 'sinatra'
 require 'airrecord'
 require 'byebug'
-require 'dotenv/load'
+# require 'dotenv/load'
 
 # key, base, table
 Site = Airrecord.table(ENV['AIRTABLE_KEY'], ENV['AIRTABLE_BASE'], "sites")
@@ -19,6 +19,11 @@ get '/' do
 
   if ref[-1, 1] == '/'
     ref = ref.delete_suffix('/')
+  end
+
+  if !ref.include?('https://')
+    ref = ref.gsub('http://', '')
+    ref = 'https://' + ref
   end
 
   rec = Site.all.select {|r| ref == r['website']}.first
